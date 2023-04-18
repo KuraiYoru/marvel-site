@@ -1,6 +1,5 @@
 from app import db
 
-
 association_table = db.Table(
     "heroes_comics",
     db.metadata,
@@ -18,7 +17,7 @@ class Heroes(db.Model):
     description = db.Column(db.String)
     img = db.Column(db.String)
     hero_id = db.Column(db.Integer, unique=True)
-    comics = db.relationship("Comics", secondary=association_table, backref='heroes')
+    comics = db.relationship("Comics", secondary=association_table, backref='heroes', lazy='dynamic')
 
     def __repr__(self):
         return f"{self.name}%r" % self.id
@@ -35,7 +34,5 @@ class Comics(db.Model):
     img = db.Column(db.String)
 
     def __repr__(self):
-        return f"{self.title}" % self.id
-
-
+        return f"{self.title}%r" % self.id
 

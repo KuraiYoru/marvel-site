@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p class="floating"><img src="{{ hero.img }}" class="hero-img tilt" alt="..."> <h1 class="hero-name">{{ hero.name }}</h1><br>
+    <h4 class="hero-name bottom">{% if hero.description %} {{ hero.description }} {% else %} This hero does not have a description {% endif %}</h4></p>
+    <div class="break"></div>
+    <div class="centred">
+    <h2>Comics with {{ hero.name }}</h2>
+    </div>
+  <div class="row row-cols-6 cards">
+
+{#{% for comics in hero.comics %}#}
+{##}
+{#  <div class="col col-push">#}
+{#    <div class="card h-100 scaling">#}
+{#      <img src="{{ comics.img }}" class="card-img-top" alt="...">#}
+{#      <div class="card-body">#}
+{#        <h5 class="card-title">{{ comics.title }}</h5>#}
+{#        <p class="card-text"> {% if comics.description %}{{ comics.description|truncate(50)}} {% else %} This hero doesn't have description {% endif %}</p>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{% for comics in pages.items %}
+
+  <div class="col col-push">
+    <div class="card h-100 scaling">
+      <img src="{{ comics.img }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ comics.title }}</h5>
+        <p class="card-text"> {% if comics.description %}{{ comics.description|truncate(50)}} {% else %} This hero doesn't have description {% endif %}</p>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+    </div>
+{% include 'comics_pagination.html' %}
+
+{% endblock %}

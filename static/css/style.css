@@ -6,7 +6,7 @@
 .center {
   margin-left: 200px;
   margin-right: 200px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 .cards {
   border: 5px solid;
@@ -18,8 +18,91 @@
   margin-bottom: 10px;
 }
 
+.scaling {
+  transition:.5s all ease-in;
+  z-index: 1;
+}
 .scaling:hover {
   transform: scale(1.1);
   transition: transform .5s;
+  z-index:2;
+}
+
+.pushing {
+  margin-bottom: 50px;
+  background-color: lightgrey;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(255,0,0,1) 65%, rgba(255,255,255,1) 100%);
+}
+
+.hero-img {
+  width: 350px;
+  height: 450px;
+}
+
+.floating {
+  float: left;
+  text-align: center;
+}
+
+.hero-name {
+  text-align: center;
+  animation-name: leftToRight;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-timing-function: ease;
+  backface-visibility: hidden;
+  transition:.5s all ease-in;
   z-index: 1;
 }
+
+.hero-name:hover {
+  transform: scale(1.1);
+  transition: transform .5s;
+}
+
+
+.bottom {
+  vertical-align: bottom;
+}
+
+.break {
+  clear: both;
+}
+
+@keyframes leftToRight {
+  0% {
+    opacity: 0;
+    transform: translate(-10rem);
+  }
+  80% {
+    transform: translate(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px);
+  }
+}
+
+.tilt {
+   box-shadow: 0px 0px 10px red;
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+
+.tilt:hover {
+  -webkit-transform: rotate(-10deg);
+     -moz-transform: rotate(-10deg);
+       -o-transform: rotate(-10deg);
+      -ms-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+
+.centred {
+  text-align: center;
+}
+
+

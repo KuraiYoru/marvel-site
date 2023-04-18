@@ -5,6 +5,7 @@
 {% for hero in pages.items %}
 
   <div class="col col-push">
+  <a href="hero/{{ hero.hero_id }}">
     <div class="card h-100 scaling">
       <img src="{{ hero.img }}" class="card-img-top" alt="...">
       <div class="card-body">
@@ -12,6 +13,7 @@
         <p class="card-text"> {% if hero.description %}{{ hero.description|truncate(50)}} {% else %} This hero doesn't have description {% endif %}</p>
       </div>
     </div>
+  </a>
   </div>
 
 {% endfor %}
