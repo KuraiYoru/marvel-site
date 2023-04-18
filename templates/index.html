@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row row-cols-6 cards">
+{% for hero in pages.items %}
+
+  <div class="col col-push">
+    <div class="card h-100 scaling">
+      <img src="{{ hero.img }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ hero.name }}</h5>
+        <p class="card-text"> {% if hero.description %}{{ hero.description|truncate(50)}} {% else %} This hero doesn't have description {% endif %}</p>
+      </div>
+    </div>
+  </div>
+
+{% endfor %}
+    </div>
+<br>
+{% include 'models_pagination.html' %}
+
+{% endblock %}

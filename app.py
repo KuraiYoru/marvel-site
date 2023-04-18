@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
+from flask_paginate import Pagination, get_page_parameter
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///marvel.db'
@@ -50,12 +51,15 @@ def hello_world():
     # con = sqlite3.connect('marvel.db')
     # cur = con.cursor()
     # print(cur.execute('select * from heroes').fetchall())
-    print(Heroes.query.first())
-    return 'Hello World!'
+    # heroes = Heroes.query.paginate(page=1, per_page=10)
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    heroes = Heroes.query
+    pages = heroes.paginate(page=page, per_page=24)
+    return render_template('index.html', pages=pages)
 
 
 def main():
-    print(Heroes.query)
+    app.run(debug=True)
 
 
 if __name__ == '__main__':
