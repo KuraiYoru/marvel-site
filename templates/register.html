@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Регистрация</h1>
+ <form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(class="form-control", type="email") }}<br>
+        {% for error in form.email.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(class="form-control", type="password") }}<br>
+        {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password_again.label }}<br>
+        {{ form.password_again(class="form-control", type="password") }}<br>
+        {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+  <label for="fileUpload">Выберите файлы для загрузки:</label><br>
+  <input type="file" multiple="multiple" id="fileUpload" name="fileUpload[]" accept=".jpg, .jpeg, .png" onchange="previewFiles()"><br><br>
+  <div id="preview"></div><br><br>
+  <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+ </form>
+
+ <script type="text/javascript">
+  // Функция для предпросмотра загруженных картинок
+  function previewFiles() {
+   var preview = document.querySelector('#preview');
+   var files   = document.querySelector('input[type=file]').files;
+   preview.innerHTML = '';
+   if (files) {
+       Array.from(files).forEach(function(file) {
+           var reader = new FileReader();
+           reader.onloadend = function () {
+               var img = document.createElement('img');
+               img.src = reader.result;
+               preview.appendChild(img);
+           }
+           reader.readAsDataURL(file);
+       });
+   }
+  }
+ </script>
+{% endblock %}

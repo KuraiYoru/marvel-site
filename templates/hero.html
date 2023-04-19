@@ -7,32 +7,26 @@
     <div class="centred">
     <h2>Comics with {{ hero.name }}</h2>
     </div>
+{% include 'models_pagination.html' %}
+
   <div class="row row-cols-6 cards">
 
-{#{% for comics in hero.comics %}#}
-{##}
-{#  <div class="col col-push">#}
-{#    <div class="card h-100 scaling">#}
-{#      <img src="{{ comics.img }}" class="card-img-top" alt="...">#}
-{#      <div class="card-body">#}
-{#        <h5 class="card-title">{{ comics.title }}</h5>#}
-{#        <p class="card-text"> {% if comics.description %}{{ comics.description|truncate(50)}} {% else %} This hero doesn't have description {% endif %}</p>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
+
 {% for comics in pages.items %}
 
   <div class="col col-push">
+  <a href="/comics/{{ comics.comics_id }}">
     <div class="card h-100 scaling">
       <img src="{{ comics.img }}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{ comics.title }}</h5>
-        <p class="card-text"> {% if comics.description %}{{ comics.description|truncate(50)}} {% else %} This hero doesn't have description {% endif %}</p>
+        <p class="card-text"> {% if comics.description %}{{ comics.description|truncate(50)}} {% else %} This comics doesn't have description {% endif %}</p>
       </div>
     </div>
+  </a>
   </div>
 {% endfor %}
     </div>
-{% include 'comics_pagination.html' %}
+{% include 'models_pagination.html' %}
 
 {% endblock %}
