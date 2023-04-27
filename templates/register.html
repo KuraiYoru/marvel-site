@@ -58,6 +58,7 @@
            reader.onloadend = function () {
                var img = document.createElement('img');
                img.src = reader.result;
+               img.width = 600;
                preview.appendChild(img);
            }
            reader.readAsDataURL(file);

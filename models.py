@@ -13,6 +13,13 @@ association_table = db.Table(
 )
 
 
+class UserComics(db.Model):
+    __tablename__ = 'user_comics'
+    action = db.Column(db.String)
+    user_id = db.Column(db.ForeignKey("users.id"), primary_key=True)
+    comics_id = db.Column(db.ForeignKey("comics.comics_id"), primary_key=True)
+
+
 class Heroes(db.Model):
     __tablename__ = 'heroes'
 
@@ -37,6 +44,8 @@ class Comics(db.Model):
     description = db.Column(db.String)
     comics_id = db.Column(db.Integer, unique=True)
     img = db.Column(db.String)
+    stock = db.relationship('UserComics', backref='comics',
+                         primaryjoin=comics_id == UserComics.comics_id)
 
     def __repr__(self):
         return f"{self.title}%r" % self.id
@@ -48,10 +57,11 @@ class User(db.Model, UserMixin):
                    primary_key=True, autoincrement=True)
     email = db.Column(db.String(80))
     user_name = db.Column(db.String(80))
-    data = db.Column(db.LargeBinary)
     hashed_password = db.Column(db.String(80))
     created_date = db.Column(db.DateTime,
                              default=datetime.now)
+    stock = db.relationship('UserComics', backref='user',
+                            primaryjoin=id == UserComics.user_id)
 
     def hash_password(self):
         self.hashed_password = generate_password_hash(self.hashed_password)
@@ -60,5 +70,4 @@ class User(db.Model, UserMixin):
         return f'<User {self.user_name}>'
 
     def verify_password(self, pwd):
-        return check_password_hash(self.password, pwd)
-
+        return check_password_hash(self.hashed_password, pwd)

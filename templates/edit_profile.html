@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Редактировать</h1>
+ <form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for err in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ err }}
+            </p>
+        {% endfor %}
+
+<label for="fileUpload">Выберите файлы для загрузки:</label><br>
+<input type="file" multiple="multiple" id="fileUpload" name="fileUpload[]" accept=".jpg, .jpeg, .png" onchange="previewFiles()"><br><br>
+  <div id="preview"></div><br><br>
+ <h1>Текущая фотография</h1>
+ <div>
+{% if error %}
+<img src="{{ url_for('static', filename="img/Iron-Man-marvel.jpg")}}" style="max-width: 600px">
+{% else %}
+<img src="{{ url_for('static', filename="img/img_" + current_user.id|string + ".png")}}" style="max-width: 600px">
+ {% endif %}
+ </div>
+  <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+ </form>
+
+ <script type="text/javascript">
+  // Функция для предпросмотра загруженных картинок
+  function previewFiles() {
+   var preview = document.querySelector('#preview');
+   var files   = document.querySelector('input[type=file]').files;
+   preview.innerHTML = '';
+   if (files) {
+       Array.from(files).forEach(function(file) {
+           var reader = new FileReader();
+           reader.onloadend = function () {
+               var img = document.createElement('img');
+               img.src = reader.result;
+               img.width = 600;
+               preview.appendChild(img);
+           }
+           reader.readAsDataURL(file);
+       });
+   }
+  }
+ </script>
+{#<script>#}
+{#function previewFile() {#}
+{#  // Ваш код для предварительного просмотра загруженных файлов#}
+{#}#}
+{##}
+{#// Отображение картинки по умолчанию при загрузке страницы#}
+{#window.onload = function() {#}
+{#  var previewImg = document.getElementById('previewImg');#}
+{#  previewImg.onload = function() {#}
+{#    // Картинка загружена#}
+{#  };#}
+{#  previewImg.src = "{{ url_for('static', filename="img/img_" + current_user.id|string + ".png")}}";#}
+{#};#}
+{#</script>#}
+{% endblock %}

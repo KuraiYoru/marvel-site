@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p class="floating"><img src="{{ hero.img }}" class="hero-img tilt" alt="..."> <h1 class="hero-name">{{ hero.name }}</h1><br>
-    <h4 class="hero-name bottom">{% if hero.description %} {{ hero.description }} {% else %} This hero does not have a description {% endif %}</h4></p>
+<p class="floating"><img src="{{ hero.img }}" class="hero-img tilt" alt="..."> <h1 class="hero-name text">{{ hero.name }}</h1><br>
+    <h4 class="hero-name bottom text">{% if hero.description %} {{ hero.description }} {% else %} This hero does not have a description {% endif %}</h4></p>
     <div class="break"></div>
     <div class="centred">
-    <h2>Comics with {{ hero.name }}</h2>
+    <h2 class="text">Comics with {{ hero.name }}</h2>
     </div>
 {% include 'models_pagination.html' %}
 
-  <div class="row row-cols-6 cards">
+  <div class="row row-cols-6 cards dop">
 
 
 {% for comics in pages.items %}

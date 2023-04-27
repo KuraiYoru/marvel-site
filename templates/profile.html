@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text">Your Profile:</h1>
+<div class="profile">
+{% if error %}
+<img src="{{ url_for('static', filename="img/Iron-Man-marvel.jpg")}}" class="profile_img">
+{% else %}
+<img src="{{ url_for('static', filename="img/img_" + current_user.id|string + ".png")}}" class="profile_img">
+
+{% endif %}
+<h3>Your name: {{ current_user.user_name }}</h3>
+<h3>Registred date {{ current_user.created_date.strftime('%Y-%m-%d %H:%M') }}</h3>
+
+<a class="btn btn-primary" href="/edit_profile"> Edit profile</a>
+<div class="break"></div>
+
+<div class="heroes_profile">
+{% if action == 'future' %}
+<h1> For future: </h1>
+{% elif action == 'now' %}
+<h1> Reading: </h1>
+{% elif action == 'past' %}
+<h1> Already read: </h1>
+{% endif %}
+<div class="dropup-center dropup">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    open
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href=".?action=future"> For future:</a></li>
+    <li><a class="dropdown-item" href=".?action=now">Reading:</a></li>
+    <li><a class="dropdown-item" href=".?action=past">Already read:</a></li>
+  </ul>
+</div>
+{% if pages.items %}
+{% include 'models_pagination.html' %}
+  <div class="row row-cols-5 cards profile-gallery">
+
+
+{% for comics in pages.items %}
+
+  <div class="col col-push">
+  <a href="/comics/{{ comics.comics_id }}">
+    <div class="card h-100 scaling">
+      <img src="{{ comics.img }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ comics.title|truncate(15) }}</h5>
+        <p class="card-text"> {% if comics.description %}{{ comics.description|truncate(50)}} {% else %} This comics doesn't have description {% endif %}</p>
+      </div>
+    <a type="button" class="btn btn-danger" href="/delete_comics/{{ comics.comics_id }}">Delete from the list</a>
+    </div>
+  </a>
+
+  </div>
+{% endfor %}
+    </div>
+{% include 'models_pagination.html' %}
+{% else %}
+<h2 style="margin: 0 auto">There is no comicses there</h2>
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

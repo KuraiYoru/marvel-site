@@ -7,15 +7,19 @@
   margin-left: 200px;
   margin-right: 200px;
   margin-top: 100px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+    min-height: 80vh;
 }
-.cards {
+.dop {
   border: 5px solid;
   text-align: center;
-  max-width: 1580px;
+  max-width: 1500px;
 }
 
 .col-push {
   margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .scaling {
@@ -32,7 +36,7 @@
   margin-bottom: 50px;
   background-color: lightgrey;
   z-index: 1000;
-  background: linear-gradient(180deg, rgba(255,0,0,1) 65%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom, #ffffff, #8b0000);
 }
 
 .hero-img {
@@ -45,6 +49,10 @@
   text-align: center;
 }
 
+.floating h1 {
+    font-weight: 900;
+}
+
 .hero-name {
   text-align: center;
   animation-name: leftToRight;
@@ -54,6 +62,7 @@
   backface-visibility: hidden;
   transition:.5s all ease-in;
   z-index: 1;
+  font-size: 48px;
 }
 
 .hero-name:hover {
@@ -107,9 +116,106 @@
 
 
 footer {
-  background: linear-gradient(0deg, rgba(255,0,0,1) 65%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(16deg,  #ffffff, #8b0000);
   width: 100%;
   height: 400px;
   margin-top: 100px;
+  bottom: 0;
+  text-align: center;
+    font-size: 24px;
+    font-weight: 700;
 }
 
+.profile_img {
+  width: 600px;
+  max-height: 600px;
+  float: left;
+    margin-right: 10px;
+}
+
+
+.profile {
+  background: linear-gradient(to bottom right, #1c2331, #6b5b95);
+  overflow-y: scroll;
+  border: 1px solid #ff7f50;
+  color: #ffffff;
+}
+
+.text {
+    mix-blend-mode: color-burn;
+
+}
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    text-align: right;
+    margin-right: 1250px;
+    margin-bottom: 50px;
+    z-index: 10;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.minimum {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.profile-gallery {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+}
+
+.heroes_profile {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.font {
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.nav-item {
+    height: 52px;
+}
+
+.push {
+    margin-bottom: 100px;
+}
